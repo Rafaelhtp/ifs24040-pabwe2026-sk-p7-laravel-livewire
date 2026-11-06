@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
-#[Title('Login - TodoApp')]
+#[Title('Login - StockApp')]
 class Login extends Component
 {
     public string $login = '';

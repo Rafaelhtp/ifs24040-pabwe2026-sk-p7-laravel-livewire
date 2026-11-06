@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Features\Admin\Livewire\AdminUserTodoList;
+use App\Features\Admin\Livewire\AdminUserStockList;
 use App\Features\Admin\Livewire\UserList;
-use App\Features\Todo\Models\Todo;
+use App\Features\Stock\Enums\StockStatus;
+use App\Features\Stock\Models\Stock;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 use Tests\TestCase;
 
 class AdminLivewireTest extends TestCase
@@ -25,15 +25,16 @@ class AdminLivewireTest extends TestCase
             ->assertStatus(403);
 
         $this->actingAs($member)
-            ->get("/admin/users/{$targetUser->id}/todos")
+            ->get("/admin/users/{$targetUser->id}/stocks")
             ->assertStatus(403);
     }
 
     public function test_admin_can_view_user_list(): void
     {
         $admin = User::factory()->admin()->create();
-        User::factory()->create(['name' => 'Budi Santoso', 'email' => 'budi@test.com']);
+        $budi = User::factory()->create(['name' => 'Budi Santoso', 'email' => 'budi@test.com']);
         User::factory()->create(['name' => 'Citra Lestari', 'email' => 'citra@test.com']);
+        Stock::factory()->count(2)->create(['user_id' => $budi->id]);
 
         $this->actingAs($admin);
 
@@ -45,38 +46,50 @@ class AdminLivewireTest extends TestCase
             ->assertDontSee('Citra Lestari');
     }
 
-    public function test_admin_can_view_user_todos_read_only(): void
+    public function test_admin_can_view_user_stocks_read_only(): void
     {
         $admin = User::factory()->admin()->create();
         $member = User::factory()->member()->create(['name' => 'Dewi Sartika']);
 
-        Todo::factory()->create(['user_id' => $member->id, 'title' => 'Tugas Matematika', 'status' => 'pending']);
-        Todo::factory()->create(['user_id' => $member->id, 'title' => 'Tugas Fisika', 'status' => 'completed']);
+        Stock::factory()->create([
+            'user_id' => $member->id,
+            'name' => 'Kertas HVS A4',
+            'quantity' => 50,
+            'min_stock' => 10,
+            'status' => StockStatus::Available->value,
+        ]);
+        Stock::factory()->create([
+            'user_id' => $member->id,
+            'name' => 'Tinta Printer',
+            'quantity' => 0,
+            'min_stock' => 5,
+            'status' => StockStatus::OutOfStock->value,
+        ]);
 
         $this->actingAs($admin);
 
-        Livewire::test(AdminUserTodoList::class, ['user' => $member])
+        Livewire::test(AdminUserStockList::class, ['user' => $member])
             ->assertSee('Dewi Sartika')
-            ->assertSee('Tugas Matematika')
-            ->assertSee('Tugas Fisika')
-            ->set('search', 'Matematika')
-            ->assertSee('Tugas Matematika')
-            ->assertDontSee('Tugas Fisika')
+            ->assertSee('Kertas HVS A4')
+            ->assertSee('Tinta Printer')
+            ->set('search', 'Kertas')
+            ->assertSee('Kertas HVS A4')
+            ->assertDontSee('Tinta Printer')
             ->set('search', '')
-            ->set('statusFilter', 'completed')
-            ->assertSee('Tugas Fisika')
-            ->assertDontSee('Tugas Matematika');
+            ->set('statusFilter', StockStatus::OutOfStock->value)
+            ->assertSee('Tinta Printer')
+            ->assertDontSee('Kertas HVS A4');
     }
 
-    public function test_admin_can_export_user_todos(): void
+    public function test_admin_can_export_user_stocks(): void
     {
         $admin = User::factory()->admin()->create();
         $member = User::factory()->member()->create(['name' => 'Eko Prasetyo']);
-        Todo::factory()->create(['user_id' => $member->id, 'title' => 'Tugas Export Admin']);
+        Stock::factory()->create(['user_id' => $member->id, 'name' => 'Barang Export Admin']);
 
         $this->actingAs($admin);
 
-        Livewire::test(AdminUserTodoList::class, ['user' => $member])
+        Livewire::test(AdminUserStockList::class, ['user' => $member])
             ->call('exportExcel')
             ->assertFileDownloaded();
     }

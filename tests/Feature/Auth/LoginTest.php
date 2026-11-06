@@ -18,7 +18,10 @@ class LoginTest extends TestCase
         $this->get('/login')
             ->assertStatus(200)
             ->assertSee('Masuk ke Akun Anda')
-            ->assertSee('Username atau Email');
+            ->assertSee('Username atau Email')
+            ->assertSee('id="login-username"', false)
+            ->assertSee('id="login-password"', false)
+            ->assertSee('id="login-submit"', false);
     }
 
     public function test_login_validation(): void
@@ -55,7 +58,7 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_member_login_with_email_redirects_to_todos(): void
+    public function test_member_login_with_email_redirects_to_stocks(): void
     {
         User::factory()->member()->create([
             'username' => 'member1',
@@ -69,12 +72,12 @@ class LoginTest extends TestCase
             ->set('remember', true)
             ->call('authenticate')
             ->assertHasNoErrors()
-            ->assertRedirect(route('todos.index'));
+            ->assertRedirect(route('stocks.index'));
 
         $this->assertAuthenticated();
     }
 
-    public function test_member_login_with_username_redirects_to_todos(): void
+    public function test_member_login_with_username_redirects_to_stocks(): void
     {
         User::factory()->member()->create([
             'username' => 'member_cool',
@@ -87,7 +90,7 @@ class LoginTest extends TestCase
             ->set('password', 'password123')
             ->call('authenticate')
             ->assertHasNoErrors()
-            ->assertRedirect(route('todos.index'));
+            ->assertRedirect(route('stocks.index'));
 
         $this->assertAuthenticated();
     }

@@ -23,7 +23,7 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
-            <!-- Edit Todo Button (Opens Edit Modal) -->
+            <!-- Edit Stock Button (Opens Edit Modal) -->
             <button wire:click="openEditModal" wire:loading.attr="disabled" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-75 text-white text-xs font-semibold rounded-lg shadow-sm transition">
                 <svg wire:loading.remove wire:target="openEditModal" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <!-- Cover Todo Section -->
+    <!-- Cover Stock Section -->
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
         <input type="file" wire:model="coverPhoto" id="coverPhotoInput" accept="image/*" class="hidden">
 
@@ -108,7 +108,7 @@
         @enderror
     </div>
 
-    <!-- Todo View Mode Details -->
+    <!-- Stock View Mode Details -->
     <div class="space-y-6">
         <!-- Metadata Overview Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -184,7 +184,7 @@
         </div>
     </div>
 
-    <!-- Edit Todo Modal with Toast UI Editor -->
+    <!-- Edit Stock Modal with Toast UI Editor -->
     @if ($showEditModal)
         <div
             x-data="{ show: true }"
