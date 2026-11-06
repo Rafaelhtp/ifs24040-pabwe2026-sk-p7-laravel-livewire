@@ -36,7 +36,7 @@
         }
     ],
     "env": {
-        "APP_NAME": "Laravel Vercel",
+        "APP_NAME": "Stock Barang",
         "APP_DEBUG": "false",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -47,6 +47,13 @@
         "CACHE_STORE": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp"
+        "VIEW_COMPILED_PATH": "/tmp",
+        "APP_ENV": "production",
+        "APP_URL": "https://ifs24040-pabwe2026-sk-p7-laravel-livewire.vercel.app",
+        "FORCE_HTTPS": "true",
+        "DB_CONNECTION": "mysql",
+        "MYSQL_ATTR_SSL_CA": "/etc/ssl/certs/ca-certificates.crt",
+        "QUEUE_CONNECTION": "sync",
+        "FILESYSTEM_DISK": "local"
     }
 }
