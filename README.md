@@ -1,4 +1,4 @@
-# Abdullah Ubaid - PABWE 2026 Praktikum 7 (Laravel 13 & Livewire)
+# Rafael Nobel Hutapea - PABWE 2026 Praktikum 7 (Laravel 13 & Livewire)
 
 Aplikasi Todolist modern dengan arsitektur **Clean Architecture & Feature-First Approach** sesuai standar industri, dibangun menggunakan **Laravel 13**, **Livewire 3**, basis data **MySQL**, upload/export spreadsheet via **PhpOffice/PhpSpreadsheet**, integrasi kecerdasan buatan (**OpenAI AI Content Generation**), rate limiting (1000 per detik), proteksi kepemilikan middleware, force HTTPS, dan **100% Test Coverage**.
 
