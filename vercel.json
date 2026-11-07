@@ -33,6 +33,9 @@
         "DB_CONNECTION": "mysql",
         "MYSQL_ATTR_SSL_CA": "/etc/ssl/certs/ca-certificates.crt",
         "QUEUE_CONNECTION": "sync",
-        "FILESYSTEM_DISK": "local"
+        "FILESYSTEM_DISK": "local",
+        "CACHE_STORE": "array",
+        "CACHE_DRIVER": "array",
+        "SESSION_DRIVER": "cookie"
     }
 }
