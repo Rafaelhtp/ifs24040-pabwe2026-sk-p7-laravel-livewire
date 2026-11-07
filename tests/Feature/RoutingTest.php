@@ -62,4 +62,26 @@ class RoutingTest extends TestCase
         $this->get('/up')
             ->assertStatus(200);
     }
+
+    public function test_root_redirects_preserve_https_behind_reverse_proxy(): void
+    {
+        $member = User::factory()->member()->create();
+        $admin = User::factory()->admin()->create();
+
+        $headers = [
+            'X-Forwarded-Proto' => 'https',
+            'X-Forwarded-Host' => 'ifs24040-pabwe2026-sk-p7-laravel-livewire.s1if.cloud',
+            'X-Forwarded-Port' => '443',
+        ];
+
+        $this->actingAs($member)
+            ->withHeaders($headers)
+            ->get('/')
+            ->assertRedirect('https://ifs24040-pabwe2026-sk-p7-laravel-livewire.s1if.cloud/stocks');
+
+        $this->actingAs($admin)
+            ->withHeaders($headers)
+            ->get('/')
+            ->assertRedirect('https://ifs24040-pabwe2026-sk-p7-laravel-livewire.s1if.cloud/admin/users');
+    }
 }

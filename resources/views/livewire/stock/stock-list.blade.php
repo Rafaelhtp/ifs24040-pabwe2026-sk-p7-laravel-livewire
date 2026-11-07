@@ -1,23 +1,20 @@
 <div>
-    <!-- Toast UI Editor CDN Styles & Scripts -->
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-
     <!-- Top Action Bar -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
             <h1 class="text-2xl font-bold text-slate-900">Inventaris Stok Barang</h1>
-            <p class="text-sm text-slate-500 mt-1">Kelola stok barang, pantau jumlah, dan hindari kehabisan persediaan</p>
+            <p class="text-sm text-slate-600 mt-1">Kelola stok barang, pantau jumlah, dan hindari kehabisan persediaan</p>
         </div>
 
         <div class="relative" x-data="{ open: false, loading: null }" @click.outside="open = false" @keydown.escape.window="open = false">
             <button type="button" @click="open = !open" :disabled="!!loading"
+                aria-label="Menu aksi"
                 class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition disabled:opacity-60"
                 title="Menu aksi">
-                <svg x-show="!loading" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg aria-hidden="true" x-show="!loading" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                 </svg>
-                <svg x-show="loading" x-cloak class="animate-spin w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24">
+                <svg aria-hidden="true" x-show="loading" x-cloak class="animate-spin w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                 </svg>
@@ -31,7 +28,7 @@
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-95"
                 class="absolute right-0 z-30 mt-2 w-56 origin-top-right rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl shadow-slate-200/70">
-                <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">Aksi Cepat</div>
+                <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-600">Aksi Cepat</div>
 
                 <button type="button" :disabled="!!loading"
                     @click="
@@ -39,9 +36,9 @@
                         $wire.openCreateModal().finally(() => loading = null);
                     "
                     class="flex w-full items-center gap-2.5 px-3 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-50 transition disabled:opacity-60">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
-                        <svg x-show="loading !== 'create'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
-                        <svg x-show="loading === 'create'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
+                        <svg aria-hidden="true" x-show="loading !== 'create'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                        <svg aria-hidden="true" x-show="loading === 'create'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
                     </span>
                     Tambah Stok
                 </button>
@@ -52,25 +49,25 @@
                         $wire.openAiModal().finally(() => loading = null);
                     "
                     class="flex w-full items-center gap-2.5 px-3 py-2.5 text-sm font-semibold text-purple-700 hover:bg-purple-50 transition disabled:opacity-60">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
-                        <svg x-show="loading !== 'ai'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                        <svg x-show="loading === 'ai'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-100 text-purple-700">
+                        <svg aria-hidden="true" x-show="loading !== 'ai'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        <svg aria-hidden="true" x-show="loading === 'ai'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
                     </span>
                     Generate dengan AI
                 </button>
 
                 <div class="my-1.5 border-t border-slate-100"></div>
-                <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">Spreadsheet</div>
+                <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-600">Spreadsheet</div>
 
                 <button type="button" :disabled="!!loading"
                     @click="
                         loading = 'import'; open = false;
                         $wire.openImportModal().finally(() => loading = null);
                     "
-                    class="flex w-full items-center gap-2.5 px-3 py-2.5 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 transition disabled:opacity-60">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
-                        <svg x-show="loading !== 'import'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                        <svg x-show="loading === 'import'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    class="flex w-full items-center gap-2.5 px-3 py-2.5 text-sm font-semibold text-emerald-800 hover:bg-emerald-50 transition disabled:opacity-60">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800">
+                        <svg aria-hidden="true" x-show="loading !== 'import'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+                        <svg aria-hidden="true" x-show="loading === 'import'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
                     </span>
                     Import Excel
                 </button>
@@ -81,9 +78,9 @@
                         $wire.exportExcel().finally(() => loading = null);
                     "
                     class="flex w-full items-center gap-2.5 px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 transition disabled:opacity-60">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
-                        <svg x-show="loading !== 'export'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                        <svg x-show="loading === 'export'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-slate-700">
+                        <svg aria-hidden="true" x-show="loading !== 'export'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        <svg aria-hidden="true" x-show="loading === 'export'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
                     </span>
                     <span x-text="loading === 'export' ? 'Mengekspor...' : 'Export Excel'"></span>
                 </button>
@@ -95,10 +92,13 @@
     <div
         class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
         <div class="w-full sm:w-72 relative">
-            <input wire:model.live.debounce.300ms="search" type="text" placeholder="Cari nama, SKU, atau deskripsi..."
+            <label for="stock-search" class="sr-only">Cari nama, SKU, atau deskripsi</label>
+            <input id="stock-search" wire:model.live.debounce.300ms="search" type="text"
+                aria-label="Cari nama, SKU, atau deskripsi"
+                placeholder="Cari nama, SKU, atau deskripsi..."
                 class="w-full pl-3.5 pr-9 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <div wire:loading wire:target="search,statusFilter" class="absolute right-3 top-2.5">
-                <svg class="animate-spin h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24">
+                <svg aria-hidden="true" class="animate-spin h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                         stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
@@ -107,8 +107,9 @@
         </div>
 
         <div class="flex items-center space-x-3 w-full sm:w-auto">
-            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Status:</label>
-            <select wire:model.live="statusFilter"
+            <label for="stock-status-filter" class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Status:</label>
+            <select id="stock-status-filter" wire:model.live="statusFilter"
+                aria-label="Filter status stok"
                 class="px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                 <option value="">Semua Status</option>
                 @foreach ($statuses as $status)
@@ -122,13 +123,13 @@
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         @if ($stocks->isEmpty())
             <div class="py-16 text-center">
-                <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor"
+                <svg aria-hidden="true" class="w-12 h-12 text-slate-400 mx-auto mb-3" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                         d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
                 <p class="text-base font-semibold text-slate-700">Belum ada stok ditemukan</p>
-                <p class="text-sm text-slate-500 mt-1">Tambah stok baru, import dari Excel, atau generate otomatis menggunakan AI</p>
+                <p class="text-sm text-slate-600 mt-1">Tambah stok baru, import dari Excel, atau generate otomatis menggunakan AI</p>
             </div>
         @else
             <ul class="divide-y divide-slate-100">
@@ -138,9 +139,9 @@
                             <!-- Stock Icon / Cover -->
                             <div class="mt-0.5 w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0">
                                 @if ($stock->coverImageUrl())
-                                    <img src="{{ $stock->coverImageUrl() }}" alt="Cover {{ $stock->name }}" class="w-full h-full object-cover">
+                                    <img src="{{ $stock->coverImageUrl() }}" alt="Cover {{ $stock->name }}" width="48" height="48" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 @else
-                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                     </svg>
                                 @endif
@@ -149,7 +150,7 @@
                             <div class="flex-1 min-w-0">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <a href="{{ route('stocks.show', $stock->id) }}"
-                                        class="text-base font-semibold hover:text-blue-600 transition {{ $stock->status === \App\Features\Stock\Enums\StockStatus::OutOfStock ? 'text-slate-400' : 'text-slate-900' }}">
+                                        class="text-base font-semibold hover:text-blue-700 transition {{ $stock->status === \App\Features\Stock\Enums\StockStatus::OutOfStock ? 'text-slate-600' : 'text-slate-900' }}">
                                         {{ $stock->name }}
                                     </a>
                                     <span
@@ -157,18 +158,20 @@
                                         {{ $stock->status->label() }}
                                     </span>
                                     @if ($stock->sku)
-                                        <span class="text-xs font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">SKU: {{ $stock->sku }}</span>
+                                        <span class="text-xs font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">SKU: {{ $stock->sku }}</span>
                                     @endif
                                 </div>
 
-                                <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500">
+                                <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-600">
                                     <!-- Quantity Adjust -->
                                     <div class="inline-flex items-center rounded-lg border border-slate-200 bg-white overflow-hidden">
                                         <button type="button" wire:click="adjustQuantity({{ $stock->id }}, -1)" wire:loading.attr="disabled" wire:target="adjustQuantity"
-                                            class="px-2.5 py-1 text-sm font-bold text-rose-600 hover:bg-rose-50 disabled:opacity-60 transition" title="Kurangi stok">-</button>
+                                            aria-label="Kurangi stok {{ $stock->name }}"
+                                            class="px-2.5 py-1 text-sm font-bold text-rose-700 hover:bg-rose-50 disabled:opacity-60 transition" title="Kurangi stok">-</button>
                                         <span class="px-3 py-1 text-sm font-bold text-slate-800 border-x border-slate-200 min-w-[3.5rem] text-center">{{ $stock->quantity }}</span>
                                         <button type="button" wire:click="adjustQuantity({{ $stock->id }}, 1)" wire:loading.attr="disabled" wire:target="adjustQuantity"
-                                            class="px-2.5 py-1 text-sm font-bold text-emerald-600 hover:bg-emerald-50 disabled:opacity-60 transition" title="Tambah stok">+</button>
+                                            aria-label="Tambah stok {{ $stock->name }}"
+                                            class="px-2.5 py-1 text-sm font-bold text-emerald-700 hover:bg-emerald-50 disabled:opacity-60 transition" title="Tambah stok">+</button>
                                     </div>
                                     <span>Satuan: <span class="font-semibold text-slate-700">{{ $stock->unit }}</span></span>
                                     <span>Harga: <span class="font-semibold text-slate-700">{{ $stock->price !== null ? 'Rp '.number_format((float) $stock->price, 0, ',', '.') : '-' }}</span></span>
@@ -180,12 +183,13 @@
                         <!-- Row Actions Menu -->
                         <div class="relative flex-shrink-0" x-data="{ open: false, loading: null }" @click.outside="open = false" @keydown.escape.window="open = false">
                             <button type="button" @click="open = !open" :disabled="!!loading"
-                                class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-transparent text-slate-500 hover:border-slate-200 hover:bg-white hover:text-slate-800 transition disabled:opacity-60"
+                                aria-label="Tindakan untuk {{ $stock->name }}"
+                                class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-800 transition disabled:opacity-60"
                                 title="Tindakan">
-                                <svg x-show="!loading" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <svg aria-hidden="true" x-show="!loading" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                                 </svg>
-                                <svg x-show="loading" x-cloak class="animate-spin w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24">
+                                <svg aria-hidden="true" x-show="loading" x-cloak class="animate-spin w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                 </svg>
@@ -199,12 +203,12 @@
                                 x-transition:leave-start="opacity-100 scale-100"
                                 x-transition:leave-end="opacity-0 scale-95"
                                 class="absolute right-0 z-20 mt-1.5 w-48 origin-top-right rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl shadow-slate-200/70">
-                                <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">Tindakan</div>
+                                <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-600">Tindakan</div>
 
                                 <a href="{{ route('stocks.show', $stock->id) }}" @click="open = false"
-                                    class="flex w-full items-center gap-2.5 px-3 py-2 text-sm font-semibold text-sky-700 hover:bg-sky-50 transition">
-                                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100 text-sky-600">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="flex w-full items-center gap-2.5 px-3 py-2 text-sm font-semibold text-sky-800 hover:bg-sky-50 transition">
+                                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100 text-sky-700">
+                                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
@@ -217,12 +221,12 @@
                                         loading = 'edit'; open = false;
                                         $wire.openEditModal({{ $stock->id }}).finally(() => loading = null);
                                     "
-                                    class="flex w-full items-center gap-2.5 px-3 py-2 text-sm font-semibold text-amber-700 hover:bg-amber-50 transition disabled:opacity-60">
-                                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-600">
-                                        <svg x-show="loading !== 'edit'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="flex w-full items-center gap-2.5 px-3 py-2 text-sm font-semibold text-amber-800 hover:bg-amber-50 transition disabled:opacity-60">
+                                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-800">
+                                        <svg aria-hidden="true" x-show="loading !== 'edit'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>
-                                        <svg x-show="loading === 'edit'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                                        <svg aria-hidden="true" x-show="loading === 'edit'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                         </svg>
@@ -238,11 +242,11 @@
                                         $wire.confirmDelete({{ $stock->id }}).finally(() => loading = null);
                                     "
                                     class="flex w-full items-center gap-2.5 px-3 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 transition disabled:opacity-60">
-                                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-rose-100 text-rose-600">
-                                        <svg x-show="loading !== 'delete'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-rose-100 text-rose-700">
+                                        <svg aria-hidden="true" x-show="loading !== 'delete'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>
-                                        <svg x-show="loading === 'delete'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                                        <svg aria-hidden="true" x-show="loading === 'delete'" x-cloak class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                         </svg>
@@ -270,11 +274,11 @@
             class="modal-scroll-lock fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 bg-slate-900/50 backdrop-blur-sm">
             <div class="bg-white rounded-2xl max-w-2xl w-full shadow-xl border border-slate-200 max-h-[90vh] overflow-hidden flex flex-col">
                 <div class="flex items-center justify-between px-6 py-4 bg-blue-600">
-                    <h3 class="text-lg font-bold text-white">
+                    <h2 class="text-lg font-bold text-white">
                         {{ $editingStockId ? 'Edit Stok' : 'Tambah Stok Baru' }}
-                    </h3>
-                    <button type="button" @click="show = false; $wire.closeFormModal()" class="text-white/80 hover:text-white transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    </h2>
+                    <button type="button" @click="show = false; $wire.closeFormModal()" aria-label="Tutup modal form stok" class="text-white/90 hover:text-white transition">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -285,113 +289,86 @@
                     <div class="space-y-4 px-6 py-5 overflow-y-auto flex-1">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Nama Barang</label>
-                                <input wire:model="formName" type="text"
+                                <label for="form-name" class="block text-sm font-medium text-slate-700 mb-1">Nama Barang</label>
+                                <input id="form-name" wire:model="formName" type="text"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                                     placeholder="Contoh: Kertas A4 80gsm" required>
                                 @error('formName')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">SKU</label>
-                                <input wire:model="formSku" type="text"
+                                <label for="form-sku" class="block text-sm font-medium text-slate-700 mb-1">SKU</label>
+                                <input id="form-sku" wire:model="formSku" type="text"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-mono"
                                     placeholder="Contoh: ATK-001">
                                 @error('formSku')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
                         <div>
                             <div class="flex items-center justify-between mb-1">
-                                <label class="block text-sm font-medium text-slate-700">Deskripsi (Toast UI Editor)</label>
-                                <span class="text-xs text-slate-400">Markdown & WYSIWYG</span>
+                                <label for="form-description" class="block text-sm font-medium text-slate-700">Deskripsi (Markdown)</label>
+                                <span class="text-xs text-slate-600">Mendukung format Markdown</span>
                             </div>
-
-                            <div wire:ignore
-                                 x-data="{
-                                     desc: @entangle('formDescription'),
-                                     editor: null,
-                                     init() {
-                                         this.editor = new toastui.Editor({
-                                             el: this.$refs.formEditorContainer,
-                                             height: '260px',
-                                             initialEditType: 'wysiwyg',
-                                             previewStyle: 'vertical',
-                                             initialValue: this.desc || '',
-                                             placeholder: 'Detail barang dalam format teks atau markdown...',
-                                             events: {
-                                                 change: () => {
-                                                     this.desc = this.editor.getMarkdown();
-                                                 }
-                                             }
-                                         });
-
-                                         this.$watch('desc', value => {
-                                             if (this.editor && value !== this.editor.getMarkdown()) {
-                                                 this.editor.setMarkdown(value || '', false);
-                                             }
-                                         });
-                                     }
-                                 }"
-                                 class="rounded-xl border border-slate-300 overflow-hidden bg-white">
-                                <div x-ref="formEditorContainer"></div>
-                            </div>
+                            <textarea id="form-description" wire:model="formDescription" rows="4"
+                                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                                placeholder="Detail barang dalam format teks atau markdown..."></textarea>
                             @error('formDescription')
-                                <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Jumlah (Quantity)</label>
-                                <input wire:model="formQuantity" type="number" min="0"
+                                <label for="form-quantity" class="block text-sm font-medium text-slate-700 mb-1">Jumlah (Quantity)</label>
+                                <input id="form-quantity" wire:model="formQuantity" type="number" min="0"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
                                 @error('formQuantity')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Satuan (Unit)</label>
-                                <input wire:model="formUnit" type="text"
+                                <label for="form-unit" class="block text-sm font-medium text-slate-700 mb-1">Satuan (Unit)</label>
+                                <input id="form-unit" wire:model="formUnit" type="text"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                                     placeholder="pcs">
                                 @error('formUnit')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Harga (Rp)</label>
-                                <input wire:model="formPrice" type="number" min="0" step="0.01"
+                                <label for="form-price" class="block text-sm font-medium text-slate-700 mb-1">Harga (Rp)</label>
+                                <input id="form-price" wire:model="formPrice" type="number" min="0" step="0.01"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
                                 @error('formPrice')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Stok Minimum</label>
-                                <input wire:model="formMinStock" type="number" min="0"
+                                <label for="form-min-stock" class="block text-sm font-medium text-slate-700 mb-1">Stok Minimum</label>
+                                <input id="form-min-stock" wire:model="formMinStock" type="number" min="0"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
                                 @error('formMinStock')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="col-span-2">
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Status</label>
-                                <select wire:model="formStatus"
+                                <label for="form-status" class="block text-sm font-medium text-slate-700 mb-1">Status</label>
+                                <select id="form-status" wire:model="formStatus"
                                     class="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
                                     @foreach ($statuses as $st)
                                         <option value="{{ $st->value }}">{{ $st->label() }}</option>
                                     @endforeach
                                 </select>
                                 @error('formStatus')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -399,12 +376,12 @@
 
                     <div class="flex items-center justify-end gap-3 px-6 py-4 bg-blue-50 border-t border-blue-100">
                         <button type="button" @click="show = false; $wire.closeFormModal()"
-                            class="px-4 py-2 text-sm font-semibold text-slate-600 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
+                            class="px-4 py-2 text-sm font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
                             Batal
                         </button>
                         <button type="submit" wire:loading.attr="disabled"
                             class="px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-75 disabled:cursor-not-allowed rounded-lg shadow-sm transition flex items-center space-x-2">
-                            <svg wire:loading wire:target="saveStock"
+                            <svg aria-hidden="true" wire:loading wire:target="saveStock"
                                 class="animate-spin -ml-1 mr-1.5 h-4 w-4 text-white" fill="none"
                                 viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10"
@@ -428,10 +405,10 @@
             x-cloak
             class="modal-scroll-lock fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 bg-slate-900/50 backdrop-blur-sm">
             <div class="bg-white rounded-2xl max-w-md w-full shadow-xl border border-slate-200 overflow-hidden flex flex-col">
-                <div class="flex items-center justify-between px-6 py-4 bg-emerald-600">
-                    <h3 class="text-lg font-bold text-white">Import Stok dari File Excel</h3>
-                    <button type="button" @click="show = false; $wire.closeImportModal()" class="text-white/80 hover:text-white transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center justify-between px-6 py-4 bg-emerald-700">
+                    <h2 class="text-lg font-bold text-white">Import Stok dari File Excel</h2>
+                    <button type="button" @click="show = false; $wire.closeImportModal()" aria-label="Tutup modal import Excel" class="text-white/90 hover:text-white transition">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -441,13 +418,13 @@
                 <form wire:submit.prevent="importExcel" class="flex flex-col">
                     <div class="space-y-4 px-6 py-5">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1">Pilih File (.xlsx, .xls,
+                            <label for="import-file" class="block text-sm font-medium text-slate-700 mb-1">Pilih File (.xlsx, .xls,
                                 .csv)</label>
-                            <input wire:model="importFile" type="file" accept=".xlsx,.xls,.csv"
-                                class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+                            <input id="import-file" wire:model="importFile" type="file" accept=".xlsx,.xls,.csv"
+                                class="w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-800 hover:file:bg-emerald-100"
                                 required>
                             @error('importFile')
-                                <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -460,12 +437,12 @@
 
                     <div class="flex items-center justify-end gap-3 px-6 py-4 bg-emerald-50 border-t border-emerald-100">
                         <button type="button" @click="show = false; $wire.closeImportModal()"
-                            class="px-4 py-2 text-sm font-semibold text-slate-600 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
+                            class="px-4 py-2 text-sm font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
                             Batal
                         </button>
                         <button type="submit" wire:loading.attr="disabled"
-                            class="px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-75 disabled:cursor-not-allowed rounded-lg shadow-sm transition flex items-center space-x-2">
-                            <svg wire:loading wire:target="importExcel,importFile"
+                            class="px-4 py-2 text-sm font-semibold text-white bg-emerald-700 hover:bg-emerald-800 disabled:opacity-75 disabled:cursor-not-allowed rounded-lg shadow-sm transition flex items-center space-x-2">
+                            <svg aria-hidden="true" wire:loading wire:target="importExcel,importFile"
                                 class="animate-spin -ml-1 mr-1.5 h-4 w-4 text-white" fill="none"
                                 viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10"
@@ -489,22 +466,22 @@
             x-cloak
             class="modal-scroll-lock fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 bg-slate-900/50 backdrop-blur-sm">
             <div class="bg-white rounded-2xl max-w-2xl w-full shadow-xl border border-slate-200 max-h-[90vh] overflow-hidden flex flex-col">
-                <div class="flex items-center justify-between px-6 py-4 bg-purple-600">
+                <div class="flex items-center justify-between px-6 py-4 bg-purple-700">
                     <div class="flex items-center space-x-3">
                         <span class="p-2 bg-white/20 text-white rounded-lg">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </span>
                         <div>
-                            <h3 class="text-lg font-bold text-white">Generate Rekomendasi Stok dengan AI</h3>
-                            <p class="text-xs text-purple-100">Minta AI membuatkan beberapa rekomendasi item inventaris sesuai
+                            <h2 class="text-lg font-bold text-white">Generate Rekomendasi Stok dengan AI</h2>
+                            <p class="text-xs text-white/90">Minta AI membuatkan beberapa rekomendasi item inventaris sesuai
                                 kebutuhan Anda</p>
                         </div>
                     </div>
-                    <button type="button" @click="show = false; $wire.closeAiModal()" class="text-white/80 hover:text-white transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button type="button" @click="show = false; $wire.closeAiModal()" aria-label="Tutup modal AI generator" class="text-white/90 hover:text-white transition">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -514,40 +491,40 @@
                 <div class="space-y-4 overflow-y-auto flex-1 px-6 py-5">
                     @if ($aiErrorMessage)
                         <div
-                            class="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
+                            class="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs font-medium">
                             {{ $aiErrorMessage }}
                         </div>
                     @endif
 
                     <div class="space-y-3">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1">Permintaan Anda /
+                            <label for="ai-prompt" class="block text-sm font-medium text-slate-700 mb-1">Permintaan Anda /
                                 Prompt</label>
-                            <textarea wire:model="aiPrompt" rows="3"
+                            <textarea id="ai-prompt" wire:model="aiPrompt" rows="3"
                                 class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
                                 placeholder="Contoh: Rekomendasikan stok perlengkapan kantor untuk toko alat tulis..."></textarea>
                             @error('aiPrompt')
-                                <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                             <div>
                                 <div class="flex items-center space-x-2">
-                                    <label class="text-xs font-medium text-slate-600">Jumlah item:</label>
-                                    <input wire:model="aiCount" type="number" min="1"
+                                    <label for="ai-count" class="text-xs font-medium text-slate-700">Jumlah item:</label>
+                                    <input id="ai-count" wire:model="aiCount" type="number" min="1"
                                         class="w-20 px-2.5 py-1 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium text-center"
                                         placeholder="3">
-                                    <span class="text-xs text-slate-400">item</span>
+                                    <span class="text-xs text-slate-600">item</span>
                                 </div>
                                 @error('aiCount')
-                                    <span class="text-xs text-rose-600 mt-1 block">{{ $message }}</span>
+                                    <span class="text-xs text-rose-700 mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <button wire:click="generateWithAi" wire:loading.attr="disabled"
-                                class="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:opacity-75 disabled:cursor-not-allowed text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center justify-center space-x-2">
-                                <svg wire:loading wire:target="generateWithAi"
+                                class="px-4 py-2 bg-purple-700 hover:bg-purple-800 disabled:opacity-75 disabled:cursor-not-allowed text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center justify-center space-x-2">
+                                <svg aria-hidden="true" wire:loading wire:target="generateWithAi"
                                     class="animate-spin -ml-0.5 mr-1.5 h-3.5 w-3.5 text-white" fill="none"
                                     viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10"
@@ -563,41 +540,41 @@
                     <!-- AI In-Progress Waiting Banner -->
                     <div wire:loading wire:target="generateWithAi"
                         class="p-6 bg-purple-50 rounded-xl border border-purple-200 text-center space-y-2">
-                        <svg class="animate-spin h-7 w-7 text-purple-600 mx-auto" fill="none" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" class="animate-spin h-7 w-7 text-purple-700 mx-auto" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                 stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                         </svg>
                         <p class="text-sm font-semibold text-purple-900">Menghubungi AI untuk menyusun rekomendasi stok...</p>
-                        <p class="text-xs text-purple-600">Mohon tunggu beberapa detik, item stok sedang
+                        <p class="text-xs text-purple-800">Mohon tunggu beberapa detik, item stok sedang
                             digenerate.</p>
                     </div>
 
                     <!-- AI Preview Results -->
                     @if (!empty($aiGeneratedItems))
                         <div class="pt-4 border-t border-slate-200">
-                            <h4 class="text-sm font-bold text-slate-800 mb-2">Pilih Stok yang ingin ditambahkan:</h4>
+                            <h3 class="text-sm font-bold text-slate-800 mb-2">Pilih Stok yang ingin ditambahkan:</h3>
                             <div class="space-y-2 max-h-60 overflow-y-auto">
                                 @foreach ($aiGeneratedItems as $index => $item)
                                     <label
                                         class="flex items-start space-x-3 p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-purple-50/50 cursor-pointer transition">
                                         <input wire:model="aiSelectedIndices" value="{{ $index }}"
                                             type="checkbox"
-                                            class="mt-1 rounded border-slate-300 text-purple-600 focus:ring-purple-500">
+                                            class="mt-1 rounded border-slate-300 text-purple-700 focus:ring-purple-500">
                                         <div class="flex-1 text-xs">
                                             <div class="flex items-center justify-between">
                                                 <span class="font-bold text-slate-900">{{ $item['name'] }}</span>
                                                 @if (!empty($item['sku']))
-                                                    <span class="text-slate-400 font-mono">SKU: {{ $item['sku'] }}</span>
+                                                    <span class="text-slate-600 font-mono">SKU: {{ $item['sku'] }}</span>
                                                 @endif
                                             </div>
-                                            <p class="text-slate-500 mt-0.5">
+                                            <p class="text-slate-600 mt-0.5">
                                                 Qty: {{ $item['quantity'] ?? 0 }} {{ $item['unit'] ?? 'pcs' }}
                                                 &bull; Min: {{ $item['min_stock'] ?? 5 }}
                                                 &bull; Harga: {{ isset($item['price']) ? 'Rp '.number_format((float) $item['price'], 0, ',', '.') : '-' }}
                                             </p>
                                             @if (!empty($item['description']))
-                                                <p class="text-slate-600 mt-1">{{ $item['description'] }}</p>
+                                                <p class="text-slate-700 mt-1">{{ $item['description'] }}</p>
                                             @endif
                                         </div>
                                     </label>
@@ -609,13 +586,13 @@
 
                 <div class="flex items-center justify-end gap-3 px-6 py-4 bg-purple-50 border-t border-purple-100">
                     <button type="button" @click="show = false; $wire.closeAiModal()"
-                        class="px-4 py-2 text-sm font-semibold text-slate-600 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
+                        class="px-4 py-2 text-sm font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
                         Batal
                     </button>
                     @if (!empty($aiGeneratedItems))
                         <button type="button" wire:click="saveAiGenerated" wire:loading.attr="disabled"
-                            class="px-4 py-2 text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 disabled:opacity-75 disabled:cursor-not-allowed rounded-lg shadow-sm transition flex items-center space-x-2">
-                            <svg wire:loading wire:target="saveAiGenerated"
+                            class="px-4 py-2 text-sm font-semibold text-white bg-purple-700 hover:bg-purple-800 disabled:opacity-75 disabled:cursor-not-allowed rounded-lg shadow-sm transition flex items-center space-x-2">
+                            <svg aria-hidden="true" wire:loading wire:target="saveAiGenerated"
                                 class="animate-spin -ml-1 mr-1.5 h-4 w-4 text-white" fill="none"
                                 viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10"
@@ -641,24 +618,24 @@
             <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden">
                 <div class="flex items-center space-x-3 px-6 py-4 bg-rose-600">
                     <div class="w-10 h-10 rounded-xl bg-white/20 text-white flex items-center justify-center flex-shrink-0">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-white">Konfirmasi Hapus Stok</h3>
-                        <p class="text-xs text-rose-100">Tindakan ini tidak dapat dibatalkan</p>
+                        <h2 class="text-base font-bold text-white">Konfirmasi Hapus Stok</h2>
+                        <p class="text-xs text-white/90">Tindakan ini tidak dapat dibatalkan</p>
                     </div>
                 </div>
 
                 <div class="px-6 py-5">
-                    <p class="text-sm text-slate-600">
+                    <p class="text-sm text-slate-700">
                         Apakah Anda yakin ingin menghapus stok ini secara permanen dari inventaris Anda?
                     </p>
                 </div>
 
                 <div class="flex items-center justify-end gap-3 px-6 py-4 bg-rose-50 border-t border-rose-100">
-                    <button type="button" @click="show = false; $wire.cancelDelete()" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
+                    <button type="button" @click="show = false; $wire.cancelDelete()" class="px-4 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition">
                         Batal
                     </button>
                     <button type="button"
@@ -669,8 +646,8 @@
                             deleting = true;
                             $wire.deleteStock().finally(() => deleting = false);
                         "
-                        class="px-4 py-2 bg-rose-600 hover:bg-rose-700 disabled:opacity-75 text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center space-x-1.5">
-                        <svg x-show="deleting" x-cloak class="animate-spin -ml-0.5 mr-1 h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
+                        class="px-4 py-2 bg-rose-700 hover:bg-rose-800 disabled:opacity-75 text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center space-x-1.5">
+                        <svg aria-hidden="true" x-show="deleting" x-cloak class="animate-spin -ml-0.5 mr-1 h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                         </svg>

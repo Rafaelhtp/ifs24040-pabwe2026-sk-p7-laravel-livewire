@@ -224,7 +224,7 @@ class StockListLivewireTest extends TestCase
         $sheet->setCellValue('H2', '5');
         $sheet->setCellValue('I2', 'available');
 
-        $tempPath = tempnam(sys_get_temp_dir(), 'test_upload_').'.xlsx';
+        $tempPath = storage_path('app/test_upload_'.uniqid().'.xlsx');
         $writer = new Xlsx($spreadsheet);
         $writer->save($tempPath);
 
