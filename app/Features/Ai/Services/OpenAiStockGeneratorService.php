@@ -37,7 +37,7 @@ class OpenAiStockGeneratorService implements AiClientInterface
 
         $this->endpoint = rtrim($resolvedEndpoint, '/');
         $this->apiKey = $resolvedKey;
-        $this->model = $model ?? (string) config('openai.model', 'gpt-4o-mini');
+        $this->model = $model ?? (string) config('openai.model', 'nvidia/nemotron-3-ultra-550b-a55b:free');
     }
 
     /**
