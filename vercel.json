@@ -11,12 +11,15 @@
             "maxDuration": 10
         }
     },
+    
     "routes": [
-        { "src": "/build/(.*)", "dest": "/public/build/$1" },
-        { "src": "/livewire/(.*)", "dest": "/public/livewire/$1" },
-        { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
-        { "src": "/(.*)", "dest": "/api/index.php" }
+    { "src": "/build/(.*)", "dest": "/public/build/$1" },
+    { "src": "/livewire/(.*)", "dest": "/public/livewire/$1" },
+    { "src": "/vendor/livewire/(.*)", "dest": "/public/vendor/livewire/$1" },
+    { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
+    { "src": "/(.*)", "dest": "/api/index.php" }
     ],
+
     "env": {
         "APP_NAME": "Stock Barang",
         "APP_ENV": "production",
