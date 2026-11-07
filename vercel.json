@@ -3,19 +3,27 @@
     "regions": [
         "hnd1"
     ],
-    "outputDirectory": "public",
-    "functions": {
-        "api/index.php": {
-            "runtime": "vercel-php@0.9.0",
-            "memory": 1024,
-            "maxDuration": 10
-        }
-    },
     "routes": [
-        { "src": "/build/(.*)", "dest": "/public/build/$1" },
-        { "src": "/livewire/(.*)", "dest": "/public/livewire/$1" },
-        { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
-        { "src": "/(.*)", "dest": "/api/index.php" }
+        {
+            "src": "/build/assets/(.*)",
+            "dest": "/public/build/assets/$1"
+        },
+        {
+            "src": "/vendor/livewire/(.*)",
+            "dest": "/public/vendor/livewire/$1"
+        },
+        {
+            "src": "/favicon.(.*)",
+            "dest": "/public/favicon.$1"
+        },
+        {
+            "src": "/robots.txt",
+            "dest": "/public/robots.txt"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
     ],
     "env": {
         "APP_NAME": "Stock Barang",
@@ -31,8 +39,21 @@
         "SESSION_DRIVER": "cookie",
         "VIEW_COMPILED_PATH": "/tmp",
         "DB_CONNECTION": "mysql",
-        "MYSQL_ATTR_SSL_CA": "/etc/ssl/certs/ca-certificates.crt",
+        "MYSQL_ATTR_SSL_CA": "/etc/pki/tls/certs/ca-bundle.crt",
         "QUEUE_CONNECTION": "sync",
-        "FILESYSTEM_DISK": "local"
-    }
+        "FILESYSTEM_DISK": "local",
+        "CACHE_DRIVER": "array",
+        "CACHE_STORE": "array",
+        "FORCE_HTTPS": "true"
+    },
+    "builds": [
+        {
+            "src": "/api/index.php",
+            "use": "vercel-php@0.9.0"
+        },
+        {
+            "src": "/public/**",
+            "use": "@vercel/static"
+        }
+    ]
 }

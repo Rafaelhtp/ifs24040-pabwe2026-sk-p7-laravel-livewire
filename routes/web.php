@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// TEMPORARY DIAGNOSTIC - hapus setelah selesai
+Route::get('/dbtest', function () {
+    try {
+        Illuminate\Support\Facades\DB::connection()->getPdo();
+        return 'DB OK, users: '.Illuminate\Support\Facades\DB::table('users')->count();
+    } catch (\Throwable $e) {
+        return response(get_class($e).': '.substr($e->getMessage(), 0, 300), 500);
+    }
+});
+
 Route::middleware(['throttle:1000-per-second'])->group(function () {
     // Root Redirection
     Route::get('/', function () {
